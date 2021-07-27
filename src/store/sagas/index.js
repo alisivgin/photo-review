@@ -1,0 +1,1 @@
+export { getRandomPhoto } from "./photo";
