@@ -1,6 +1,5 @@
 import React from "react";
 import { default as Mdl } from "react-modal";
-import { useImage } from "react-image";
 import { LIFECYCLE } from "../../constants";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import styled from "styled-components";
@@ -23,7 +22,7 @@ const customStyles = {
 };
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-Mdl.setAppElement("#root");
+if (process.env.NODE_ENV !== "test") Mdl.setAppElement("#root");
 
 const Image = styled.img`
   object-fit: contain;
@@ -49,11 +48,6 @@ function Modal() {
     }),
     shallowEqual
   );
-  const { src } = useImage({
-    srcList: photo.data.urls ? photo.data.urls.full : "",
-    useSuspense: false,
-  });
-
   return (
     <Mdl
       isOpen={isOpen}
@@ -64,9 +58,13 @@ function Modal() {
       <ImageContainer>
         {photo.lifecycle === LIFECYCLE.PENDING ? (
           <h2>Yükleniyor..</h2>
-        ) : (
-          <Image src={src} alt="new" />
-        )}
+        ) : photo.lifecycle === LIFECYCLE.DONE ? (
+          <Image
+            data-testid={photo.data.id}
+            src={photo.data.urls ? photo.data.urls.regular : ""}
+            alt="New Image"
+          />
+        ) : null}
       </ImageContainer>
     </Mdl>
   );

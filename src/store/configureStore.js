@@ -4,7 +4,7 @@ import createSagaMiddleware from "redux-saga";
 import * as reducers from "./reducers";
 import { getRandomPhoto } from "./sagas";
 
-const rootReducer = combineReducers(reducers);
+export const rootReducer = combineReducers(reducers);
 
 const sagaMiddleware = createSagaMiddleware();
 
