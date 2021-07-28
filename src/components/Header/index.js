@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../Button";
-import { header as connect } from "../../containers";
+import { useDispatch } from "react-redux";
+import { FETCH_PHOTO } from "../../store/actions/actionTypes";
 
 const Container = styled.div`
   flex: 1;
@@ -17,13 +18,18 @@ const Title = styled.h2`
   flex: 8;
 `;
 
-function Header({ fetchPhoto }) {
+function Header() {
+  const dispatch = useDispatch();
   return (
     <Container>
       <Title>Your Photos</Title>
-      <Button onClicked={fetchPhoto} style={{ flex: 1 }} text="Get a Photo" />
+      <Button
+        onClicked={() => dispatch({ type: FETCH_PHOTO })}
+        style={{ flex: 1 }}
+        text="Get a Photo"
+      />
     </Container>
   );
 }
 
-export default connect(Header);
+export default Header;

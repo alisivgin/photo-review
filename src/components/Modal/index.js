@@ -2,8 +2,9 @@ import React from "react";
 import { default as Mdl } from "react-modal";
 import { useImage } from "react-image";
 import { LIFECYCLE } from "../../constants";
-import { modal as connect } from "../../containers";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import styled from "styled-components";
+import { CLOSE_MODAL } from "../../store/actions/actionTypes";
 
 const customStyles = {
   content: {
@@ -39,7 +40,15 @@ const ImageContainer = styled.div`
   `}
 `;
 
-function Modal({ isOpen, photo, closeModal }) {
+function Modal() {
+  const dispatch = useDispatch();
+  const { isOpen, photo } = useSelector(
+    ({ modal, photo }) => ({
+      isOpen: modal.isOpen,
+      photo,
+    }),
+    shallowEqual
+  );
   const { src } = useImage({
     srcList: photo.data.urls ? photo.data.urls.full : "",
     useSuspense: false,
@@ -48,7 +57,7 @@ function Modal({ isOpen, photo, closeModal }) {
   return (
     <Mdl
       isOpen={isOpen}
-      onRequestClose={closeModal}
+      onRequestClose={() => dispatch({ type: CLOSE_MODAL })}
       style={customStyles}
       contentLabel="Example Modal"
     >
@@ -62,4 +71,4 @@ function Modal({ isOpen, photo, closeModal }) {
     </Mdl>
   );
 }
-export default connect(Modal);
+export default Modal;

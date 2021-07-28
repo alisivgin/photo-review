@@ -17,7 +17,6 @@ export function* getRandomPhoto() {
       axios.get,
       "https://api.unsplash.com/photos/random?client_id=8eYwm9uxXdhDD_z8PxnN9nek1XOvXG7UUSwtHCh3AqU"
     );
-    console.log(photo);
     yield put({ type: COMPLETE_FETCH_PHOTO, photo });
   } catch (error) {
     yield put({ type: FAIL_FETCH_PHOTO });
