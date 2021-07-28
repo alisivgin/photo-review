@@ -1,14 +1,16 @@
-import { put, call, take } from "redux-saga/effects";
+import { put, call, take, spawn } from "redux-saga/effects";
 import axios from "axios";
 import {
   FETCH_PHOTO,
   START_FETCH_PHOTO,
   COMPLETE_FETCH_PHOTO,
   FAIL_FETCH_PHOTO,
+  OPEN_MODAL,
 } from "../actions/actionTypes";
 
 export function* getRandomPhoto() {
   yield take(FETCH_PHOTO);
+  yield put({ type: OPEN_MODAL });
   try {
     yield put({ type: START_FETCH_PHOTO });
     const { data: photo } = yield call(
@@ -19,5 +21,7 @@ export function* getRandomPhoto() {
     yield put({ type: COMPLETE_FETCH_PHOTO, photo });
   } catch (error) {
     yield put({ type: FAIL_FETCH_PHOTO });
+  } finally {
+    yield spawn(getRandomPhoto);
   }
 }

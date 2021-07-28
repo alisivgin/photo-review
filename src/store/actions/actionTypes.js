@@ -2,3 +2,9 @@ export const FETCH_PHOTO = "FETCH_PHOTO";
 export const START_FETCH_PHOTO = "START_FETCH_PHOTO";
 export const COMPLETE_FETCH_PHOTO = "COMPLETE_FETCH_PHOTO";
 export const FAIL_FETCH_PHOTO = "FAIL_FETCH_PHOTO";
+
+export const APPROVE_PHOTO = "APPROVE_PHOTO";
+export const REJECT_PHOTO = "REJECT_PHOTO";
+
+export const OPEN_MODAL = "OPEN_MODAL";
+export const CLOSE_MODAL = "CLOSE_MODAL";

@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { default as Mdl } from "react-modal";
+import { useImage } from "react-image";
+import { LIFECYCLE } from "../../constants";
+import { modal as connect } from "../../containers";
+import styled from "styled-components";
 
 const customStyles = {
   content: {
@@ -9,6 +13,8 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    width: "auto",
+    height: "auto",
   },
   overlay: {
     // backgroundColor: "black",
@@ -18,44 +24,42 @@ const customStyles = {
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Mdl.setAppElement("#root");
 
-export default function Modal() {
-  let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(true);
+const Image = styled.img`
+  object-fit: contain;
+`;
 
-  function openModal() {
-    setIsOpen(true);
-  }
+const ImageContainer = styled.div`
+  width: 55rem;
+  height: 45rem;
+  ${({ photo }) =>
+    photo &&
+    `
+      height: 80%;
+      width: calc(80% * ${photo.height / photo.width});
+  `}
+`;
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
+function Modal({ isOpen, photo, closeModal }) {
+  const { src } = useImage({
+    srcList: photo.data.urls ? photo.data.urls.full : "",
+    useSuspense: false,
+  });
 
   return (
-    <div>
-      <button onClick={openModal}>Open Modal</button>
-      <Mdl
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
-      </Mdl>
-    </div>
+    <Mdl
+      isOpen={isOpen}
+      onRequestClose={closeModal}
+      style={customStyles}
+      contentLabel="Example Modal"
+    >
+      <ImageContainer>
+        {photo.lifecycle === LIFECYCLE.PENDING ? (
+          <h2>Yükleniyor..</h2>
+        ) : (
+          <Image src={src} alt="new" />
+        )}
+      </ImageContainer>
+    </Mdl>
   );
 }
+export default connect(Modal);

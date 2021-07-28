@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../Button";
+import { header as connect } from "../../containers";
 
 const Container = styled.div`
   flex: 1;
@@ -16,11 +17,13 @@ const Title = styled.h2`
   flex: 8;
 `;
 
-export default function Header() {
+function Header({ fetchPhoto }) {
   return (
     <Container>
       <Title>Your Photos</Title>
-      <Button style={{ flex: 1 }} text="Get a Photo" />
+      <Button onClicked={fetchPhoto} style={{ flex: 1 }} text="Get a Photo" />
     </Container>
   );
 }
+
+export default connect(Header);
