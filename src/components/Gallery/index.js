@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import ApprovedPhoto from "./ApprovedPhoto";
 
-const PHOTO_DIMENSION = "20rem";
+const PHOTO_DIMENSION = "18rem";
 
 const Container = styled.div`
   flex: 8;
@@ -41,7 +41,7 @@ const Container = styled.div`
 export default function Gallery() {
   const { approved } = useSelector(
     ({ approved }) => ({
-      approved: Object.values(approved),
+      approved: Object.values(approved).reverse(),
     }),
     shallowEqual
   );

@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
-const PHOTO_DIMENSION = "20rem";
+const PHOTO_DIMENSION = "12rem";
 
 const Container = styled.div`
-  width: ${PHOTO_DIMENSION};
-  height: ${PHOTO_DIMENSION};
+  width: 100%;
+  height: 100%;
 `;
 const Image = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  border-radius: 1rem;
+  object-fit: cover;
+  border-radius: 0.6rem;
   transition: 0.5s all ease-in-out;
   &:hover {
     transform: scale(1.1);
@@ -24,7 +24,7 @@ export default function ApprovedPhoto({ id, url }) {
   return (
     <Container>
       <Image ref={ref} onLoad={onLoad} src={url}></Image>
-      {/* {loaded && <h1>Loaded!</h1>} */}
+      {!loaded && <h1>Loading</h1>}
     </Container>
   );
 }
