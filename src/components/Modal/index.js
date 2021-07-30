@@ -8,7 +8,8 @@ import { CLOSE_MODAL } from "../../store/actions/actionTypes";
 import { useWindowDimensions } from "../../store/utility";
 import { thumbsup, thumbsdown } from "../../assets";
 import ContentLoader from "react-content-loader";
-console.log(thumbsup);
+
+import { APPROVE_PHOTO, REJECT_PHOTO } from "../../store/actions/actionTypes";
 const IMAGE_SCREEN_RATIO = 0.75;
 
 const customStyles = {
@@ -87,11 +88,24 @@ function Modal() {
           <ButtonContainer>
             <Button
               style={{ backgroundColor: "#FF616D" }}
+              onClicked={() =>
+                dispatch({
+                  type: REJECT_PHOTO,
+                  photoId: photo.data.id,
+                })
+              }
               text="Reject"
               icon={thumbsdown}
             />
             <Button
               style={{ backgroundColor: "#66DE93" }}
+              onClicked={() =>
+                dispatch({
+                  type: APPROVE_PHOTO,
+                  photoId: photo.data.id,
+                  photoUrl: photo.data.urls.small,
+                })
+              }
               text="Approve"
               icon={thumbsup}
             />
