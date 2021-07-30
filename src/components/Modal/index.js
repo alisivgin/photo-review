@@ -123,7 +123,6 @@ const ImageTypeLoader = (props) => {
       height: 300,
     },
   });
-  console.log({ w, h });
   return (
     <ContentLoader
       speed={2}

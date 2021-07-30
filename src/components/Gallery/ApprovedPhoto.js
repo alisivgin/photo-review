@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const PHOTO_DIMENSION = "12rem";
 
-const Container = styled.div`
+const Container = styled.li`
   width: 100%;
   height: 100%;
 `;
@@ -19,12 +19,10 @@ const Image = styled.img`
 `;
 
 export default function ApprovedPhoto({ id, url }) {
-  console.log(url);
   const [ref, loaded, onLoad] = useImageLoaded();
   return (
     <Container>
-      <Image ref={ref} onLoad={onLoad} src={url}></Image>
-      {!loaded && <h1>Loading</h1>}
+      <Image ref={ref} onLoad={onLoad} src={url} alt={id} />
     </Container>
   );
 }
