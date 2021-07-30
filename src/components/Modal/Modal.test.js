@@ -3,7 +3,7 @@ import { renderWithState } from "../../store/utility";
 import { screen } from "@testing-library/react";
 
 import Modal from "./index";
-import { INITIAL, DONE } from "../../constants/lifecycle";
+import { DONE } from "../../constants/lifecycle";
 
 const initialState = {
   photo: {
