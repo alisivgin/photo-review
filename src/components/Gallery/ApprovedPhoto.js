@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import styled from "styled-components";
-
-const PHOTO_DIMENSION = "12rem";
 
 const Container = styled.li`
   width: 100%;
@@ -18,28 +16,10 @@ const Image = styled.img`
   }
 `;
 
-export default function ApprovedPhoto({ id, url }) {
-  const [ref, loaded, onLoad] = useImageLoaded();
+export default function ApprovedPhoto({ url }) {
   return (
     <Container>
-      <Image ref={ref} onLoad={onLoad} src={url} alt={id} />
+      <Image src={url} />
     </Container>
   );
 }
-
-const useImageLoaded = () => {
-  const [loaded, setLoaded] = useState(false);
-  const ref = useRef();
-
-  const onLoad = () => {
-    setLoaded(true);
-  };
-
-  useEffect(() => {
-    if (ref.current && ref.current.complete) {
-      onLoad();
-    }
-  });
-
-  return [ref, loaded, onLoad];
-};
