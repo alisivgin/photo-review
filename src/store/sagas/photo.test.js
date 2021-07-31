@@ -25,12 +25,8 @@ describe("getRandomPhoto", () => {
     };
     return expectSaga(getRandomPhoto)
       .withState(storeState)
-      .put({
-        type: START_FETCH_PHOTO,
-      })
-      .put({
-        type: OPEN_MODAL,
-      })
+      .put({ type: START_FETCH_PHOTO })
+      .put({ type: OPEN_MODAL })
       .provide([
         // mack api call
         [matchers.call.fn(photoApi), { data: randomPhoto }],
@@ -39,6 +35,7 @@ describe("getRandomPhoto", () => {
         type: COMPLETE_FETCH_PHOTO,
         photo: randomPhoto,
       })
+      .spawn(getRandomPhoto)
       .dispatch({ type: FETCH_PHOTO })
       .run(1000);
   });
@@ -79,6 +76,7 @@ describe("getRandomPhoto", () => {
         [matchers.call.fn(photoApi), Promise.reject("error")],
       ])
       .put({ type: FAIL_FETCH_PHOTO })
+      .spawn(getRandomPhoto)
       .dispatch({ type: FETCH_PHOTO })
       .run(1000);
   });

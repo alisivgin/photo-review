@@ -8,6 +8,7 @@ import { CLOSE_MODAL } from "../../store/actions/actionTypes";
 import { useWindowDimensions } from "../../store/utility";
 import { thumbsup, thumbsdown } from "../../assets";
 import ContentLoader from "react-content-loader";
+import { COLORS } from "../../constants";
 
 import { APPROVE_PHOTO, REJECT_PHOTO } from "../../store/actions/actionTypes";
 const IMAGE_SCREEN_RATIO = 0.75;
@@ -22,6 +23,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     width: "auto",
     height: "auto",
+    backgroundColor: COLORS.modalBackground,
   },
   overlay: {
     // backgroundColor: "black",
@@ -119,8 +121,8 @@ function Modal() {
 const ImageTypeLoader = (props) => {
   const { w, h } = calculateImgDimensions(props.wWidth, props.wHeight, {
     data: {
-      width: 300,
-      height: 300,
+      width: 1,
+      height: 1,
     },
   });
   return (

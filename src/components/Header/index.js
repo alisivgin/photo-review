@@ -3,13 +3,14 @@ import styled from "styled-components";
 import Button from "../Button";
 import { useDispatch } from "react-redux";
 import { FETCH_PHOTO } from "../../store/actions/actionTypes";
-
+import { COLORS } from "../../constants";
+console.log(COLORS.headerBackground);
 const Container = styled.div`
   flex: 1;
   width: auto;
   height: 100%;
   padding: 0 2rem;
-  background-color: #c4c4c4;
+  background-color: ${COLORS.headerBackground};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,7 +26,7 @@ function Header() {
       <Title>Your Photos</Title>
       <Button
         onClicked={() => dispatch({ type: FETCH_PHOTO })}
-        style={{ flex: 1 }}
+        style={{ flex: 1, backgroundColor: "#C490E4" }}
         text="Get a Photo"
       />
     </Container>

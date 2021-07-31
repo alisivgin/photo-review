@@ -3,16 +3,19 @@ import styled from "styled-components";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import ApprovedPhoto from "./ApprovedPhoto";
 
+import { COLORS } from "../../constants";
+
 const PHOTO_DIMENSION = "18rem";
 
 const Container = styled.ul`
   flex: 8;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  background-color: ${COLORS.galleryBackground};
+  width: 100%
   height: 100vh;
-  margin: 0 auto;
-  margin-top: 2rem;
+  margin: 0;
+  padding-top: 2rem;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fill, ${PHOTO_DIMENSION});
