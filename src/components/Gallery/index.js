@@ -12,11 +12,10 @@ const Container = styled.div`
 `;
 
 const ImageContainer = styled.ul`
-  flex: 8;
   justify-content: center;
   align-items: center;
   background-color: ${COLORS.galleryBackground};
-  width: 100%
+  width: 100%;
   height: 100%;
   margin: 0;
   padding-top: 2rem;
