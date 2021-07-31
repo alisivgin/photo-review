@@ -3,6 +3,7 @@ import { renderWithState } from "../../store/utility";
 import { screen } from "@testing-library/react";
 
 import Modal from "./index";
+import { default as Mdl } from "react-modal";
 import { DONE } from "../../constants/lifecycle";
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
   modal: { isOpen: true },
 };
 
+Mdl.setAppElement(document.createElement("div"));
 describe("Modal", () => {
   it("should display image", async () => {
     renderWithState(<Modal />, { initialState });

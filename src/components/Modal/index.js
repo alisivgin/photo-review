@@ -25,13 +25,12 @@ const customStyles = {
     height: "auto",
     backgroundColor: COLORS.modalBackground,
   },
-  overlay: {
-    // backgroundColor: "black",
-  },
 };
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-if (process.env.NODE_ENV !== "test") Mdl.setAppElement("#root");
+// prevents error in test
+if (process.env.NODE_ENV !== "test") {
+  Mdl.setAppElement("#root");
+}
 
 const Image = styled.img`
   object-fit: contain;
