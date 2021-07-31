@@ -4,7 +4,7 @@ import Button from "../Button";
 import { useDispatch } from "react-redux";
 import { FETCH_PHOTO } from "../../store/actions/actionTypes";
 import { COLORS } from "../../constants";
-console.log(COLORS.headerBackground);
+
 const Container = styled.div`
   flex: 1;
   width: auto;

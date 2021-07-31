@@ -7,13 +7,17 @@ import { COLORS } from "../../constants";
 
 const PHOTO_DIMENSION = "18rem";
 
-const Container = styled.ul`
+const Container = styled.div`
+  flex: 8;
+`;
+
+const ImageContainer = styled.ul`
   flex: 8;
   justify-content: center;
   align-items: center;
   background-color: ${COLORS.galleryBackground};
   width: 100%
-  height: 100vh;
+  height: 100%;
   margin: 0;
   padding-top: 2rem;
   list-style: none;
@@ -22,6 +26,10 @@ const Container = styled.ul`
   grid-template-rows: repeat(auto-fill, ${PHOTO_DIMENSION});
   overflow-y: auto;
   grid-gap: 2rem;
+`;
+
+const Text = styled.h4`
+  text-align: center;
 `;
 
 export default function Gallery() {
@@ -33,9 +41,15 @@ export default function Gallery() {
   );
   return (
     <Container>
-      {approved.map(({ id, url }) => (
-        <ApprovedPhoto key={id} url={url} />
-      ))}
+      {approved.length > 0 ? (
+        <ImageContainer>
+          {approved.map(({ id, url }) => (
+            <ApprovedPhoto key={id} url={url} />
+          ))}
+        </ImageContainer>
+      ) : (
+        <Text>You don't have any photos. Please get one.</Text>
+      )}
     </Container>
   );
 }
