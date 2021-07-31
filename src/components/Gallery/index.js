@@ -15,7 +15,7 @@ const ImageContainer = styled.ul`
   justify-content: center;
   align-items: center;
   background-color: ${COLORS.galleryBackground};
-  width: 100%;
+  width: auto;
   height: 100%;
   margin: 0;
   padding-top: 2rem;
