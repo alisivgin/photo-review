@@ -4,20 +4,25 @@ import { screen } from "@testing-library/react";
 
 import Gallery from "./index";
 
-const initialState = {
-  approved: {
-    T9xCtkmIaCM: {
-      id: "T9xCtkmIaCM",
-      url: "image1-url",
-    },
-    VKPlaGw27I0: {
-      id: "VKPlaGw27I0",
-      url: "image2-url",
-    },
-  },
-};
-
 describe("Gallery", () => {
+  const initialState = {
+    approved: {
+      T9xCtkmIaCM: {
+        id: "T9xCtkmIaCM",
+        url: "image1-url",
+      },
+      VKPlaGw27I0: {
+        id: "VKPlaGw27I0",
+        url: "image2-url",
+      },
+    },
+  };
+  it("displays text if no approved photo exists", async () => {
+    renderWithState(<Gallery />, { approved: {} });
+    const Text = screen.getByText(/please get one/i);
+    expect(Text).toBeTruthy();
+  });
+
   it("list correct count of image", async () => {
     renderWithState(<Gallery />, { initialState });
 
