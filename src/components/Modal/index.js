@@ -76,7 +76,7 @@ function Modal() {
       contentLabel="Example Modal"
     >
       {photo.lifecycle === LIFECYCLE.PENDING ? (
-        <ImageTypeLoader width={width} height={height} />
+        <ImageTypeLoader w={width} h={height} />
       ) : photo.lifecycle === LIFECYCLE.DONE ? (
         <>
           <ImageContainer wWidth={width} wHeight={height} photo={photo}>
@@ -118,7 +118,7 @@ function Modal() {
 }
 
 const ImageTypeLoader = (props) => {
-  const { w, h } = calculateImgDimensions(props.width, props.weight, {
+  const { w, h } = calculateImgDimensions(props.w, props.h, {
     data: {
       width: 1,
       height: 1,
